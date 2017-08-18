@@ -1,9 +1,17 @@
 var Pets = require('../models/pets.js').Model;
+var Avatars = require('../models/avatars.js').Model;
 
-var selectAll = '_id user_id avatar_id name color age animal';
+var selectAll = '_id avatar_id name color age animal';
 
 exports.getAll = function(req, res) {
   Pets.find({}, selectAll).exec(function(err, collection) {
+    res.json(collection);
+  });
+};
+
+exports.getAllByAvatar = function(req, res) {
+  var id = req.params.avatar_id;
+  Pets.find({ avatar_id: id }, selectAll).exec(function(err, collection) {
     res.json(collection);
   });
 };
@@ -25,7 +33,7 @@ exports.addPet = function(req, res) {
 };
 
 exports.updatePet = function(req, res) {
-  var id = req.body_id;
+  var id = req.params._id;
 
   var settings = {};
 
@@ -40,9 +48,14 @@ exports.updatePet = function(req, res) {
 };
 
 exports.deletePet = function(req, res) {
-  var id = req.body_id;
-
-  Pets.deleteOne( { _id: id }, function(err, pet) {
-    res.json(pet);
+  var id = req.params._id;
+  Pets.findOne( { _id: id }, function(err, pet) {
+    pet.remove(function(err) {
+      if (!err) {
+        Avatars.update({ _id: pet.avatar_id }, { $pull: { pets: pet._id } }, function(err) {
+          res.json(pet);
+        });
+      }
+    });
   });
 };

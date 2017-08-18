@@ -7,14 +7,16 @@ var api = express.Router();
 
 // avatar routes
 api.get('/avatars', avatars.getAll);
+api.get('/avatars/:_id', avatars.getById);
 api.post('/avatars', avatars.addAvatar);
 api.put('/avatars/:_id', avatars.updateAvatar);
 api.delete('/avatars/:_id', avatars.deleteAvatar);
 
 // pet routes
 api.get('/pets', pets.getAll);
-api.post('/pets', pets.addAvatar);
-api.put('/pets/:_id', pets.updateAvatar);
-api.delete('/pets/:_id', pets.deleteAvatar);
+api.get('/avatars/:avatar_id/pets', pets.getAllByAvatar);
+api.post('/pets', pets.addPet);
+api.put('/pets/:_id', pets.updatePet);
+api.delete('/pets/:_id', pets.deletePet);
 
 module.exports = api;

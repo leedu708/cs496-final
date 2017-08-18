@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Pets = require('../models/pets.js').Model;
 var Schema = mongoose.Schema;
 
 var avatarSchema = new Schema({

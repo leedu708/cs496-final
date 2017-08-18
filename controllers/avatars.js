@@ -8,6 +8,13 @@ exports.getAll = function(req, res) {
   });
 };
 
+exports.getById = function(req, res) {
+  var id = req.params._id;
+  Avatars.findOne({ _id: id }, selectAll, function(err, avatar) {
+    res.json(avatar);
+  });
+};
+
 exports.addAvatar = function(req, res) {
   var settings = {
     name: req.body.name,
