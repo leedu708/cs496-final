@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Aesbus",
+  "author": "leedus",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.13.3",

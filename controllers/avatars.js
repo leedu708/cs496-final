@@ -8,20 +8,8 @@ exports.getAll = function(req, res) {
   });
 };
 
-exports.getUserAvatars = function(req, res) {
-  var user_id = req.body.user_id;
-  var filter = {
-    user_id: user_id
-  }
-
-  Avatars.find(filter, selectAll, function(err, avatars) {
-    res.json(avatars);
-  });
-};
-
 exports.addAvatar = function(req, res) {
   var settings = {
-    user_id: req.body.user_id,
     name: req.body.name,
     hairColor: req.body.hairColor,
     age: req.body.age,
@@ -35,7 +23,7 @@ exports.addAvatar = function(req, res) {
 };
 
 exports.updateAvatar = function(req, res) {
-  var id = req.body._id;
+  var id = req.params._id;
 
   var settings = {};
 
@@ -51,9 +39,9 @@ exports.updateAvatar = function(req, res) {
 };
 
 exports.deleteAvatar = function(req, res) {
-  var id = req.body._id;
-
-  Avatars.deleteOne( { _id: id }, function(err, avatar) {
+  var id = req.params._id;
+  Avatars.findOne( { _id: id }, function(err, avatar) {
+    avatar.remove();
     res.json(avatar);
   });
 };

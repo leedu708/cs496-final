@@ -8,20 +8,8 @@ exports.getAll = function(req, res) {
   });
 };
 
-exports.getUserPets = function(req, res) {
-  var user_id = req.body.user_id;
-  var filter = {
-    user_id: user_id
-  }
-
-  Pets.find(filter, selectAll, function(err, pets) {
-    res.json(pets);
-  });
-};
-
 exports.addPet = function(req, res) {
   var settings = {
-    user_id: req.body.user_id,
     name: req.body.name,
     color: req.body.color,
     age: req.body.age,
@@ -30,8 +18,10 @@ exports.addPet = function(req, res) {
   }
 
   Pets.create(settings, function(err, pet) {
-    res.json(pet);
-  });
+      Avatars.update({ _id: req.body.avatar_id }, { $push: { pets: pet._id } }, function(err, avatar) {
+        res.json(pet);
+      });
+    });
 };
 
 exports.updatePet = function(req, res) {
