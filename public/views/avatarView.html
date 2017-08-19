@@ -1,0 +1,142 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-12'>
+      <h2 class='inline-header'>{{ avatar.name }}</h2>
+
+      <br />Age: {{ avatar.age }}
+      <br />Hair Color: {{ avatar.hairColor }}
+      <br />Weight: {{ avatar.weight }}
+      <br />Height: {{ avatar.height }}
+    </div>
+
+    <div class='col-sm-12 pets-wrapper'>
+      <h2 class='inline-header'>Pets:</h2>
+      <div class='pull-right'>
+        <button class='btn btn-primary pointer'
+                data-toggle='modal'
+                data-target='#addPetModal'>Add Pet</button>
+      </div><br />
+      <span ng-show='!pets.length'>You do not have any pets at this time</span>
+
+      <table ng-show='pets.length' class='table table-bordered table-hover table-striped'>
+        <thead>
+          <tr>
+            <th>Pet ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Species</th>
+            <th>Color</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat='pet in pets' class='text-center'>
+            <td>{{ pet._id }}</td>
+            <td>{{ pet.name }}</td>
+            <td>{{ pet.age }}</td>
+            <td>{{ pet.animal }}</td>
+            <td>{{ pet.color }}</td>
+            <td>
+              <button class='btn btn-sm btn-warning pointer'
+                      ng-click='setEditPet(pet)'
+                      data-toggle='modal'
+                      data-target='#editPetModal'>Edit</button>
+            </td>
+            <td>
+              <button class='btn btn-sm btn-danger pointer'
+                      ng-click='deletePet(pet)'>Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- add pet modal -->
+<div class="modal fade" id="addPetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Pet for {{ avatar.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name='addForm'>
+          <div class='form-group'>
+            <label>Name:</label>
+            <input class='form-control' type='text' ng-model='newPet.name' />
+          </div>
+
+          <div class='form-group'>
+            <label>Age</label>
+            <input class='form-control' type='number' ng-model='newPet.age' />
+          </div>
+
+          <div class='form-group'>
+            <label>Color</label>
+            <input class='form-control' type='text' ng-model='newPet.color' />
+          </div>
+
+          <div class='form-group'>
+            <label>Species</label>
+            <input class='form-control' type='text' ng-model='newPet.animal' />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button ng-click='addPet(newPet)'
+                type="button"
+                class="btn btn-primary">Add Pet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit pet modal -->
+<div class="modal fade" id="editPetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Pet for {{ avatar.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name='addForm'>
+          <div class='form-group'>
+            <label>Name:</label>
+            <input class='form-control' type='text' ng-model='editPet.name' />
+          </div>
+
+          <div class='form-group'>
+            <label>Age</label>
+            <input class='form-control' type='number' ng-model='editPet.age' />
+          </div>
+
+          <div class='form-group'>
+            <label>Color</label>
+            <input class='form-control' type='text' ng-model='editPet.color' />
+          </div>
+
+          <div class='form-group'>
+            <label>Species</label>
+            <input class='form-control' type='text' ng-model='editPet.animal' />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button ng-click='updatePet(editPet)'
+                type="button"
+                class="btn btn-primary">Update Pet</button>
+      </div>
+    </div>
+  </div>
+</div>

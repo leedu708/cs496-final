@@ -20,6 +20,7 @@
             <th>Hair Color</th>
             <th>Weight</th>
             <th>Height</th>
+            <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -33,6 +34,10 @@
             <td>{{ avatar.hairColor }}</td>
             <td>{{ avatar.weight }}</td>
             <td>{{ avatar.height }}</td>
+            <td>
+              <button class='btn btn-sm btn-success pointer'
+                      ui-sref='avatar({avatarID: avatar._id})'>View</button>
+            </td>
             <td>
               <button class='btn btn-sm btn-warning pointer'
                       ng-click='setEditAvatar(avatar)'

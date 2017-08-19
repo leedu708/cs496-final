@@ -10,11 +10,5 @@ var petSchema = new Schema({
   avatar_id: { type: Schema.Types.ObjectId, ref: 'Avatar' }
 });
 
-// petSchema.pre('remove', function(next) {
-//   var pet = this;
-//   Avatars.update({ _id: pet.avatar_id }, { $pull: { pets: pet._id } }).exec();
-//   next();
-// });
-
 var Pets = mongoose.model('Pet', petSchema);
 exports.Model = Pets;

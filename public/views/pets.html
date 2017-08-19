@@ -1,0 +1,31 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-12'>
+      <h2 class='inline-header'>Pets
+        <span class='badge badge-pill badge-default'>{{ pets.length }}</span>
+      </h2>
+
+      <table class='table table-bordered table-hover table-striped'>
+        <thead>
+          <tr>
+            <th>Pet ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Color</th>
+            <th>Species</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat='pet in pets' class='text-center'>
+            <td>{{ pet._id }}</td>
+            <td>{{ pet.name }}</td>
+            <td>{{ pet.age }}</td>
+            <td>{{ pet.color }}</td>
+            <td>{{ pet.animal }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
