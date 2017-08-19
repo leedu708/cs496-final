@@ -8,7 +8,7 @@ ngApp.config(function($locationProvider, $stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/',
       templateUrl: 'views/index.html',
-      controller: 'testCtrl'
+      controller: 'homeCtrl'
     })
 });
 

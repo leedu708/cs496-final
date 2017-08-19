@@ -2,3 +2,19 @@
 .content-wrapper {
   margin-top: 50px;
 }
+
+table {
+  margin-top: 20px;
+}
+
+table th {
+  text-align: center;
+}
+
+.inline-header {
+  display: inline-block;
+}
+
+.pointer {
+  cursor: pointer;
+}

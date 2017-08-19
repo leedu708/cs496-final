@@ -1,7 +1,147 @@
 <div class='container'>
   <div class='row'>
     <div class='col-sm-12'>
-      <h2>{{ test }}</h2>
+      <h2 class='inline-header'>Avatars
+        <span class='badge badge-pill badge-default'>{{ avatars.length }}</span>
+      </h2>
+
+      <div class='pull-right'>
+        <button class='btn btn-primary pointer'
+                data-toggle='modal'
+                data-target='#addAvatarModal'>Add Avatar</button>
+      </div>
+
+      <table class='table table-bordered table-hover table-striped'>
+        <thead>
+          <tr>
+            <th>Avatar ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Hair Color</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat='avatar in avatars' class='text-center'>
+            <td>{{ avatar._id }}</td>
+            <td>{{ avatar.name }}</td>
+            <td>{{ avatar.age }}</td>
+            <td>{{ avatar.hairColor }}</td>
+            <td>{{ avatar.weight }}</td>
+            <td>{{ avatar.height }}</td>
+            <td>
+              <button class='btn btn-sm btn-warning pointer'
+                      ng-click='setEditAvatar(avatar)'
+                      data-toggle='modal'
+                      data-target='#editAvatarModal'>Edit</button>
+            </td>
+            <td>
+              <button class='btn btn-sm btn-danger pointer'
+                      ng-click='deleteAvatar(avatar)'>Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- add avatar modal -->
+<div class="modal fade" id="addAvatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Avatar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name='addForm'>
+          <div class='form-group'>
+            <label>Name:</label>
+            <input class='form-control' type='text' ng-model='newAvatar.name' />
+          </div>
+
+          <div class='form-group'>
+            <label>Age</label>
+            <input class='form-control' type='number' ng-model='newAvatar.age' />
+          </div>
+
+          <div class='form-group'>
+            <label>Hair Color</label>
+            <input class='form-control' type='text' ng-model='newAvatar.hairColor' />
+          </div>
+
+          <div class='form-group'>
+            <label>Weight</label>
+            <input class='form-control' type='number' ng-model='newAvatar.weight' />
+          </div>
+
+          <div class='form-group'>
+            <label>Height</label>
+            <input class='form-control' type='number' ng-model='newAvatar.height' />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button ng-click='addAvatar(newAvatar)'
+                type="button"
+                class="btn btn-primary">Add Avatar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit avatar modal -->
+<div class="modal fade" id="editAvatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Avatar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name='addForm'>
+          <div class='form-group'>
+            <label>Name:</label>
+            <input class='form-control' type='text' ng-model='editAvatar.name' />
+          </div>
+
+          <div class='form-group'>
+            <label>Age</label>
+            <input class='form-control' type='number' ng-model='editAvatar.age' />
+          </div>
+
+          <div class='form-group'>
+            <label>Hair Color</label>
+            <input class='form-control' type='text' ng-model='editAvatar.hairColor' />
+          </div>
+
+          <div class='form-group'>
+            <label>Weight</label>
+            <input class='form-control' type='number' ng-model='editAvatar.weight' />
+          </div>
+
+          <div class='form-group'>
+            <label>Height</label>
+            <input class='form-control' type='number' ng-model='editAvatar.height' />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button ng-click='updateAvatar(editAvatar)'
+                type="button"
+                class="btn btn-primary">Edit Avatar</button>
+      </div>
     </div>
   </div>
 </div>
